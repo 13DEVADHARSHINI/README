@@ -1,0 +1,92 @@
+127.0.0.1:6379> PING
+PONG
+127.0.0.1:6379> SADD STUD_DETAILS name deva jan dhivya madu
+(integer) 0
+127.0.0.1:6379> SADD_STUD_DETAILS rollno 13 35 17 59
+(error) ERR unknown command 'SADD_STUD_DETAILS'
+127.0.0.1:6379> SADD STUD_DETAILS rollno 13 35 17 59
+(integer) 2
+127.0.0.1:6379> SADD STUD_DETAILS sgpa 95.53 92.17 91.1 91.0
+(integer) 5
+127.0.0.1:6379> SADD STUD_DETAILS perfomence good good good good
+(integer) 2
+127.0.0.1:6379> SADD STAFFDETAILS idno 123 146 234 177
+(integer) 5
+127.0.0.1:6379> SADD STAFFDETAILS name raj anu jagan ram
+(integer) 5
+127.0.0.1:6379> SADD STAFFDETAILS course wt mad nosql cc
+(integer) 5
+127.0.0.1:6379> SADD FEES_DETAILS collegefees 30000 24000 45000 56000
+(integer) 5
+127.0.0.1:6379> SADD FEES_DETAILS hostalfees 23000 540000 34000 45000
+(integer) 4
+127.0.0.1:6379> SADD FEES_DETAILS examfees 1250 1340 1240 2390
+(integer) 5
+127.0.0.1:6379> SADD STAFFDETAILS salary 60000 40000 78000 90000
+(integer) 5
+127.0.0.1:6379> SMEMBERS STUD_DETAILS
+ 1) "sgpa"
+ 2) "35"
+ 3) "deva"
+ 4) "madu"
+ 5) "3517"
+ 6) "59"
+ 7) "91.1"
+ 8) "17"
+ 9) "91.0"
+10) "perfomence"
+11) "name"
+12) "jan"
+13) "95.53"
+14) "rollno"
+15) "good"
+16) "13"
+17) "dhivya"
+18) "92.17"
+127.0.0.1:6379> SMEMBERS STAFFDETAILS
+ 1) "234"
+ 2) "nosql"
+ 3) "177"
+ 4) "name"
+ 5) "salary"
+ 6) "raj"
+ 7) "anu"
+ 8) "wt"
+ 9) "146"
+10) "123"
+11) "ram"
+12) "cc"
+13) "idno"
+14) "mad"
+15) "jagan"
+16) "40000"
+17) "course"
+18) "90000"
+19) "60000"
+20) "78000"
+127.0.0.1:6379> SMEMBERS FEES_DETAILS
+ 1) "examfees"
+ 2) "2390"
+ 3) "540000"
+ 4) "1240"
+ 5) "1340"
+ 6) "56000"
+ 7) "hostalfees"
+ 8) "23000"
+ 9) "1250"
+10) "34000"
+11) "24000"
+12) "30000"
+13) "45000"
+14) "collegefees"
+127.0.0.1:6379> SADD BOOK_DETAIL id 12 34 7 45
+(integer) 5
+127.0.0.1:6379> SPOP BOOK_DETAIL
+"12"
+127.0.0.1:6379> DEL BOOK_DETAIL
+(integer) 1
+127.0.0.1:6379> SMEMBERS BOOK_DETAIL
+(empty list or set)
+127.0.0.1:6379> SAVE
+OK
+127.0.0.1:6379>
