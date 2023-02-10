@@ -5,9 +5,11 @@ on the college.It will manage the student
 details such that roll no,Name,cgpa.staff and office details are included.
 
   EX:
-    1)STUDENT_DETAILS name, rollno, cgpa
+
+     1)STUDENT_DETAILS name, rollno, cgpa
      2)STAFFDETAILS id, name, course
      3)FERS-DETAILS college fees,hostalfees,examfees
+ 
 The Dada base support three entities
    EX:1)STUDENT_DETAILS
      2)STAFFDETAILS 
