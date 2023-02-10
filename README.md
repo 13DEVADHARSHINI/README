@@ -13,7 +13,8 @@ The Dada base support three entities
      2)STAFFDETAILS 
      3)FERS-DETAILS 
 The attributes are:
- STUDENT DETAILS:
+        
+        STUDENT DETAILS:
 Name
 Deva ,Jan,Dhivya,Madu.
 RollNo
@@ -22,7 +23,8 @@ Sgpa
 92.17, 91.1 ,91.0,
 Performance
 Good,Good,Good,Good
-STAFF DETAILS:
+             
+           STAFF DETAILS:
 IdNo
 123,146,234,177
 Name
