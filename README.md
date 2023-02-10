@@ -1,17 +1,18 @@
-The student application is used 
-to organize and manage the details of
-Student, staffs and office details  on the college.
-It will manage the student details such that roll no,
-Name,cgpa.staff and office details are included.
+The college management application
+is used to organize and manage the details
+of Student, staffs and office details 
+on the college.It will manage the student 
+details such that roll no,Name,cgpa.staff and office details are included.
 
-  EX:1)STUDENT_DETAILS name, rollno, cgpa
+  EX:
+    1)STUDENT_DETAILS name, rollno, cgpa
      2)STAFFDETAILS id, name, course
      3)FERS-DETAILS college fees,hostalfees,examfees
 The Dada base support three entities
    EX:1)STUDENT_DETAILS
      2)STAFFDETAILS 
      3)FERS-DETAILS 
-
+The attributes are:
  STUDENT DETAILS:
 Name
 Deva ,Jan,Dhivya,Madu.
@@ -28,7 +29,8 @@ Name
 Raj,Anu,Jagan,Ram
 Course
 Wt,Mad,NoSql,Cc
-FEES DETAILS:
+
+         FEES DETAILS:
 Collegefees
 30000,24000,45000,56000
 Hostelfees
