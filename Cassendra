@@ -1,0 +1,148 @@
+cqlsh> CREATE KEYSPACE college_management_system WITH replication = {'class': 'SimpleStrategy', 'replication_factor': '3'};
+cqlsh> use college_management_system;
+cqlsh:college_management_system> CREATE TABLE students (
+                             ...     student_id varchar PRIMARY KEY,
+                             ...     first_name TEXT,
+                             ...     last_name TEXT,
+                             ...     email TEXT,
+                             ...     phone TEXT,
+                             ...     address TEXT,
+                             ...     date_of_birth DATE
+                             ... );
+cqlsh:college_management_system> CREATE TABLE courses (
+                             ...     course_id varchar PRIMARY KEY,
+                             ...     course_name TEXT,
+                             ...     department TEXT,
+                             ...     instructor TEXT,
+                             ...     start_date DATE,
+                             ...     end_date DATE
+                             ... );
+cqlsh:college_management_system> CREATE TABLE enrollments (
+                             ...     student_id varchar,
+                             ...     course_id varchar,
+                             ...     enroll_date DATE,
+                             ...     PRIMARY KEY (student_id, course_id)
+                             ... );
+cqlsh:college_management_system> CREATE TABLE grades (student_id varchar,
+                             ...     course_id varchar,
+                             ...     grade INT,
+                             ...     PRIMARY KEY (student_id, course_id)
+                             ... );
+
+
+
+cqlsh:college_management_system> INSERT INTO students (student_id, first_name, last_name, email, phone, address, date_of_birth) VALUES ('IT1', 'deva', 'T', 'tdeva@example.com', '9994986798', '123 Main St', '2003-08-13');
+
+cqlsh:college_management_system> INSERT INTO students (student_id, first_name, last_name, email, phone, address, date_of_birth) VALUES ('IT2', 'jan', 'M', 'jan@example.com', '8790986798', '13 second St', '2003-02-27');
+
+cqlsh:college_management_system> INSERT INTO students (student_id, first_name, last_name, email, phone, address, date_of_birth) VALUES ('IT3', 'dhivya', 'R', 'dhivya@example.com', '80436798', '123 first St', '2003-08-17');
+
+cqlsh:college_management_system> INSERT INTO students (student_id, first_name, last_name, email, phone, address, date_of_birth) VALUES ('IT4', 'madu', 'S', 'madu@example.com', '4567891298', '123 Main St', '2003-08-23');
+
+cqlsh:college_management_system> INSERT INTO courses (course_id, course_name, department, instructor, start_date, end_date) VALUES ('C11', 'JAVA', 'IT', 'Ram', '2023-09-01', '2023-12-15');
+
+cqlsh:college_management_system> INSERT INTO courses (course_id, course_name, department, instructor, start_date, end_date) VALUES ('C12', 'C++', 'CSE', 'Raji', '2023-09-21', '2023-12-6');
+
+cqlsh:college_management_system> INSERT INTO courses (course_id, course_name, department, instructor, start_date, end_date) VALUES ('C13 ', 'PYTHON', 'IT', 'dhivya', '2023-09-11', '2023-12-11');
+
+cqlsh:college_management_system> INSERT INTO courses (course_id, course_name, department, instructor, start_date, end_date) VALUES ('C14 ', 'HTML', 'CSE', 'madu', '2023-09-21', '2023-12-8');
+
+cqlsh:college_management_system> INSERT INTO enrollments (student_id, course_id, enroll_date) VALUES ('E1', 'C14', '2023-09-01');
+
+
+                                                                       ^
+cqlsh:college_management_system> INSERT INTO enrollments (student_id, course_id, enroll_date) VALUES ('E2', 'C12', '2023-09-13');
+
+cqlsh:college_management_system> INSERT INTO enrollments (student_id, course_id, enroll_date) VALUES ('E3', 'C13', '2023-09-11');
+
+cqlsh:college_management_system> INSERT INTO enrollments (student_id, course_id, enroll_date) VALUES ('E4', 'C11', '2023-09-21');
+
+cqlsh:college_management_system> INSERT INTO grades (student_id, course_id, grade) VALUES ('IT1â€™, 'C14' , 85);
+
+cqlsh:college_management_system> INSERT INTO grades (student_id, course_id, grade) VALUES ('IT2 ', 'C13', 95);
+
+cqlsh:college_management_system> INSERT INTO grades (student_id, course_id, grade) VALUES ('IT3 ', 'C12', 98);
+
+cqlsh:college_management_system> INSERT INTO grades (student_id, course_id, grade) VALUES ('IT4 ', 'C11' , 89);
+
+
+cqlsh:college_management_system> DELETE FROM students WHERE student_id = 'IT4 ';
+
+cqlsh:college_management_system> DELETE FROM courses WHERE course_id = 'C12';
+
+cqlsh:college_management_system> UPDATE students SET first_name = 'kani', last_name = 'S' WHERE student_id ='IT2' ;
+
+
+
+                                                           ^
+cqlsh:college_management_system> UPDATE courses SET instructor = 'Johh' WHERE course_id = 'C14' ;
+
+cqlsh:college_management_system> UPDATE grades SET grade = 100 WHERE student_id = 'IT3' AND course_id = 'C12';
+
+cqlsh:college_management_system> SELECT * FROM students;
+
+ student_id | address      | date_of_birth | email              | first_name | last_name | phone
+------------+--------------+---------------+--------------------+------------+-----------+------------
+        IT4 |  123 Main St |    2003-08-23 |   madu@example.com |       madu |         S | 4567891298
+        IT2 | 13 second St |    2003-02-27 |    jan@example.com |       kani |         S | 8790986798
+        IT1 |  123 Main St |    2003-08-13 |  tdeva@example.com |       deva |         T | 9994986798
+        IT3 | 123 first St |    2003-08-17 | dhivya@example.com |     dhivya |         R |   80436798
+
+(4 rows)
+cqlsh:college_management_system> SELECT * FROM courses;
+
+ course_id | course_name | department | end_date   | instructor | start_date
+-----------+-------------+------------+------------+------------+------------
+       C11 |        JAVA |         IT | 2023-12-15 |        Ram | 2023-09-01
+      C14  |        HTML |        CSE | 2023-12-08 |       madu | 2023-09-21
+       C14 |        null |       null |       null |       Johh |       null
+      C13  |      PYTHON |         IT | 2023-12-11 |     dhivya | 2023-09-11
+
+(4 rows)
+cqlsh:college_management_system> SELECT * FROM enrollments;
+
+ student_id | course_id | enroll_date
+------------+-----------+-------------
+         E1 |       C14 |  2023-09-01
+         E3 |       C13 |  2023-09-11
+         E2 |       C12 |  2023-09-13
+         E4 |       C11 |  2023-09-21
+
+(4 rows)
+cqlsh:college_management_system> SELECT * FROM grades;
+
+ student_id | course_id | grade
+------------+-----------+-------
+       IT4  |       C11 |    89
+       IT3  |       C12 |    98
+        IT1 |       C14 |    85
+        IT3 |       C12 |   100
+       IT2  |       C13 |    95
+
+(5 rows)
+
+cqlsh:college_management_system> SELECT * FROM students WHERE student_id = 'IT1';
+
+ student_id | address     | date_of_birth | email             | first_name | last_name | phone
+------------+-------------+---------------+-------------------+------------+-----------+------------
+        IT1 | 123 Main St |    2003-08-13 | tdeva@example.com |       deva |         T | 9994986798
+
+(1 rows)
+
+
+
+cqlsh:college_management_system> SELECT * FROM courses WHERE course_id = 'C11';
+
+ course_id | course_name | department | end_date   | instructor | start_date
+-----------+-------------+------------+------------+------------+------------
+       C11 |        JAVA |         IT | 2023-12-15 |        Ram | 2023-09-01
+
+(1 rows)
+
+cqlsh:college_management_system> SELECT * FROM enrollments WHERE student_id = 'E2' AND course_id = 'C12';
+
+ student_id | course_id | enroll_date
+------------+-----------+-------------
+         E2 |       C12 |  2023-09-13
+
+(1 rows)
